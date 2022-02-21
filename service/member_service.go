@@ -73,13 +73,13 @@ func CreateMemberValid(memberVo *vo.CreateMemberRequest) (code vo.ErrNo) {
 		return vo.UserHasExisted
 	}
 	//检查参数是否正确
-	if nick_size := len(memberVo.Nickname); nick_size > 20 || nick_size < 4 {
+	if nickSize := len(memberVo.Nickname); nickSize > 20 || nickSize < 4 {
 		return vo.ParamInvalid
 	}
-	if name_size := len(memberVo.Username); name_size > 20 || name_size < 8 {
+	if nameSize := len(memberVo.Username); nameSize > 20 || nameSize < 8 {
 		return vo.ParamInvalid
 	}
-	if pass_size := len(memberVo.Password); pass_size > 20 || pass_size < 8 {
+	if passSize := len(memberVo.Password); passSize > 20 || passSize < 8 {
 		return vo.ParamInvalid
 	}
 

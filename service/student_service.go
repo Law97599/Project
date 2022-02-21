@@ -127,7 +127,7 @@ func (m *StudentService) GetStudentCourse(v *vo.GetStudentCourseRequest) (res vo
 	if str != "" {
 		res.Code = vo.OK
 		var slice []vo.TCourse
-		json.Unmarshal([]byte(str), &slice)
+		_ = json.Unmarshal([]byte(str), &slice)
 		res.Data.CourseList = slice
 		return
 	}

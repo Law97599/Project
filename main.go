@@ -19,7 +19,7 @@ func main() {
 	go listen()
 	// 装载路由
 	r := server.NewRouter()
-	r.Run(":3000")
+	r.Run()
 }
 
 //消费数据
@@ -42,7 +42,7 @@ func listen() {
 		}
 		bookCourseJson := val[0].Messages[0].Values["StudentCourseObj"]
 		var bookCourseVo vo.BookCourseRequest
-		json.Unmarshal([]byte(bookCourseJson.(string)), &bookCourseVo)
+		_ = json.Unmarshal([]byte(bookCourseJson.(string)), &bookCourseVo)
 		sid, _ := strconv.ParseInt(bookCourseVo.StudentID, 10, 64)
 		cid, _ := strconv.ParseInt(bookCourseVo.CourseID, 10, 64)
 		sc := model.StudentCourse{

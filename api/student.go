@@ -9,7 +9,7 @@ import (
 
 var studentService service.StudentService
 
-//抢课
+// BookCourse 抢课
 func BookCourse(c *gin.Context) {
 	var courseVo vo.BookCourseRequest
 	var res vo.BookCourseResponse
@@ -23,7 +23,7 @@ func BookCourse(c *gin.Context) {
 	}
 }
 
-//查询学生课表
+// GetStudentCourse 查询学生课表
 func GetStudentCourse(c *gin.Context) {
 	var courseVo vo.GetStudentCourseRequest
 	res := vo.GetStudentCourseResponse{}

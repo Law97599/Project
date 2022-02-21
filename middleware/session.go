@@ -13,5 +13,5 @@ func Session(secret string) gin.HandlerFunc {
 	store, _ := redis.NewStore(10, "tcp", redisAddr, os.Getenv("REDIS_PW"), []byte(secret))
 	//Also set Secure: true if using SSL, you should though
 	store.Options(sessions.Options{HttpOnly: true, MaxAge: 900, Path: "/"})
-	return sessions.Sessions("camp-seesion", store)
+	return sessions.Sessions("camp-session", store)
 }

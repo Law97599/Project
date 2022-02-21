@@ -8,14 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var memberSerivce service.MemberService
+var memberService service.MemberService
 
 // CreateMember 用户注册接口
 func CreateMember(c *gin.Context) {
 	res := vo.CreateMemberResponse{}
 	var memberVo vo.CreateMemberRequest
 	if err := c.ShouldBind(&memberVo); err == nil {
-		res = memberSerivce.CreateMember(&memberVo, c)
+		res = memberService.CreateMember(&memberVo, c)
 		c.JSON(200, res)
 	} else {
 		res.Code = vo.UnknownError
@@ -28,7 +28,7 @@ func GetMember(c *gin.Context) {
 	res := vo.GetMemberResponse{}
 	var memberVo vo.GetMemberRequest
 	if err := c.ShouldBind(&memberVo); err == nil {
-		res = memberSerivce.GetMember(&memberVo)
+		res = memberService.GetMember(&memberVo)
 		c.JSON(200, res)
 	} else {
 		res.Code = vo.UnknownError
@@ -55,7 +55,7 @@ func GetMemberList(c *gin.Context) {
 		return
 	}
 
-	res := memberSerivce.GetMemberList(&memberVo)
+	res := memberService.GetMemberList(&memberVo)
 	c.JSON(200, res)
 }
 
@@ -63,7 +63,7 @@ func GetMemberList(c *gin.Context) {
 func UpdateMember(c *gin.Context) {
 	var memberVo vo.UpdateMemberRequest
 	if err := c.ShouldBind(&memberVo); err == nil {
-		res := memberSerivce.UpdateMember(&memberVo)
+		res := memberService.UpdateMember(&memberVo)
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, vo.UpdateMemberResponse{
@@ -76,7 +76,7 @@ func UpdateMember(c *gin.Context) {
 func DeleteMember(c *gin.Context) {
 	var memberVo vo.DeleteMemberRequest
 	if err := c.ShouldBind(&memberVo); err == nil {
-		res := memberSerivce.DeleteMember(&memberVo)
+		res := memberService.DeleteMember(&memberVo)
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, vo.DeleteMemberResponse{

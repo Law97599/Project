@@ -20,7 +20,7 @@ func setSession(c *gin.Context, member model.TMember) {
 	s := sessions.Default(c)
 	s.Clear()
 	s.Set("user_id", member.UserID)
-	s.Save()
+	_ = s.Save()
 }
 
 // Login 用户登录函数
