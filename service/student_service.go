@@ -74,7 +74,7 @@ func (m *StudentService) BookCourse(v *vo.BookCourseRequest) (res vo.BookCourseR
 		res.Code = vo.UnknownError
 		return
 	}
-	if b == false {
+	if !b {
 		//重复请求
 		res.Code = vo.RepeatRequest
 		return
@@ -87,9 +87,10 @@ func (m *StudentService) BookCourse(v *vo.BookCourseRequest) (res vo.BookCourseR
 	//	cache.RedisClient.Set("CourseCap:"+v.CourseID, tc.CourseStock, 0)
 	//}
 	var num int64
-	num, err = cache.RedisClient.Decr("CourseCap:" + v.CourseID).Result()
+	num, _ = cache.RedisClient.Decr("CourseCap:" + v.CourseID).Result()
 	if num < 0 {
-		courseCapCache[v.CourseID] = false
+		cache.RedisClient.Incr("CourseCap:" + v.CourseID)
+		courseCapCache[v.CourseID] = false // 内存中添加课程已满信息
 		res.Code = vo.CourseNotAvailable
 		return
 	}
