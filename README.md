@@ -61,6 +61,7 @@
 │
 ├── service # MVC框架的Service层，负责处理业务逻辑
 │   ├── auth_service.go
+│   ├── consumer_service.go
 │   ├── course_service.go
 │   ├── member_service.go
 │   └── student_service.go
