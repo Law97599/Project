@@ -19,7 +19,7 @@ func main() {
 	go listen()
 	// 装载路由
 	r := server.NewRouter()
-	r.Run()
+	r.Run(":3000")
 }
 
 //消费数据
