@@ -98,13 +98,13 @@ go run main.go
 
 ### 硬件
 
-处理器：AMD Ryzen7 4800H  四核  
+处理器：AMD Ryzen7 4800H   
 内存： 16GB  
 主频：2.9Hz  
 
 ### 软件
 
-操作系统： window10  
+操作系统： window11  
 压测软件： jmeter-5.4.3
 
 ### 测试结果
