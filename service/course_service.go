@@ -160,9 +160,9 @@ func (m *CourService) GetTeacherCourseService(v *vo.GetTeacherCourseRequest) (re
 	}
 	for _, v := range courses {
 		course := vo.TCourse{
-			strconv.FormatInt(v.CourseID, 10),
-			v.Name,
-			strconv.FormatInt(v.TeacherID, 10),
+			CourseID:  strconv.FormatInt(v.CourseID, 10),
+			Name:      v.Name,
+			TeacherID: strconv.FormatInt(v.TeacherID, 10),
 		}
 		result = append(result, &course)
 	}
@@ -186,7 +186,7 @@ func (m *CourService) ScheduleCourse(schedule vo.ScheduleCourseRequest) (res vo.
 	for k, v := range *relation {
 		teachers = append(teachers, k)
 		for _, val := range v {
-			if _, ok := set[val]; ok == false {
+			if _, ok := set[val]; !ok {
 				set[val] = false
 				courses = append(courses, val)
 			}
@@ -209,11 +209,11 @@ func (m *CourService) ScheduleCourse(schedule vo.ScheduleCourseRequest) (res vo.
 }
 
 func find(v string, relation *map[string][]string, set *map[string]bool, result *map[string]string) bool {
-	courses, _ := (*relation)[v]
+	courses := (*relation)[v]
 	for _, course := range courses {
-		if ok, _ := (*set)[course]; ok == false {
+		if ok := (*set)[course]; !ok {
 			(*set)[course] = true
-			if val, ok := (*result)[course]; ok == false || find(val, relation, set, result) == true {
+			if val, ok := (*result)[course]; !ok || find(val, relation, set, result) == true {
 				(*result)[course] = v
 				return true
 			}
@@ -223,7 +223,7 @@ func find(v string, relation *map[string][]string, set *map[string]bool, result 
 }
 
 func clear(m *map[string]bool) {
-	for k, _ := range *m {
+	for k := range *m {
 		(*m)[k] = false
 	}
 }

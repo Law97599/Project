@@ -38,7 +38,7 @@ func (m *AuthService) Login(loginVo *vo.LoginRequest, c *gin.Context) (res vo.Lo
 		return
 	}
 
-	if ok := member.CheckPassword(loginVo.Password); ok == false {
+	if ok := member.CheckPassword(loginVo.Password); !ok {
 		res.Code = vo.WrongPassword
 		return
 	}
