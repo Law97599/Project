@@ -47,7 +47,7 @@ CREATE TABLE `t_record`
 (
     `id`         bigint AUTO_INCREMENT,
     `student_id` bigint(20) NOT NULL COMMENT '学生ID',
-    `course_id`  bigi(20) NOT NULL COMMENT '课程ID',
+    `course_id`  bigint(20) NOT NULL COMMENT '课程ID',
     PRIMARY KEY (`id`)
 )COMMENT = '差错记录表';
 
